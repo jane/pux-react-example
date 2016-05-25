@@ -1,18 +1,20 @@
 module Main where
 
-import App (Action(..))
-import App.Layout (State, view, update)
-import App.Routes (match)
+import Prelude
+import App (Action(..), State, view, update, match)
+import App (init) as App
 import Control.Bind ((=<<))
 import Control.Monad.Eff (Eff)
 import DOM (DOM)
-import Prelude (bind, pure)
 import Pux (App, Config, CoreEffects, fromSimple, renderToDOM)
 import Pux.Router (sampleUrl)
 import Signal ((~>))
-import Signal.Channel (subscribe)
+import Signal.Channel (CHANNEL, subscribe)
 
 type AppEffects = (dom :: DOM)
+
+init :: forall e. Eff (channel :: CHANNEL | e) State
+init = App.init
 
 -- | App configuration
 config :: forall eff. State -> Eff (dom :: DOM | eff) (Config State Action AppEffects)

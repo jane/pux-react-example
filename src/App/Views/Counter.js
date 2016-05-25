@@ -1,11 +1,11 @@
 "use strict"
 
-// module App.Counter
+// module App.Views.Counter
 
 const React = require("react")
 const r = require("r-dom")
 const Pux = require("purescript-pux")
-const Actions = require("../App")
+const Actions = require("../../App")
 
 const PuxProvider = React.createClass({
   childContextTypes: {

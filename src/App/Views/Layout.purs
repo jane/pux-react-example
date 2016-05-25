@@ -1,7 +1,8 @@
-module App.Layout where
+module App.Views.Layout where
 
-import App.Counter as Counter
-import App (Action(..))
+import App.Actions (Action(..))
+import App.Views.Counter as Counter
+import App.Views.NotFound as NotFound
 import App.Routes (Route(Home, NotFound))
 import Control.Monad.Eff (Eff)
 import Prelude ((-), (+), pure, bind)
@@ -15,7 +16,7 @@ type State =
   , text :: String
   }
 
-init :: Eff (channel :: CHANNEL) State
+init :: forall e. Eff (channel :: CHANNEL | e) State
 init = do
   chan <- channel Reset
   pure
@@ -40,5 +41,5 @@ view state =
     , p [] [ text "Change src/Layout.purs and watch me hot-reload." ]
     , case state.route of
         Home -> Counter.view state.channel state
-        NotFound -> App.NotFound.view state
+        NotFound -> NotFound.view state
     ]

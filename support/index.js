@@ -1,5 +1,5 @@
 var Main = require('../src/Main.purs');
-var initialState = require('../src/Layout.purs').init();
+var initialState = Main.init();
 var debug = process.env.WEBPACK_ENV === 'dev'
 
 if (module.hot) {

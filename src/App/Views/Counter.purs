@@ -1,4 +1,4 @@
-module App.Counter where
+module App.Views.Counter where
 
 import Pux.Html (Html, Attribute, div)
 import Pux.Html.Attributes (attr)
